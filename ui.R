@@ -31,6 +31,10 @@ shinyUI(fluidPage(
     
     # Show plots
     mainPanel(
+      h3("To start, select cylinder options from the dropdown menu on the left"),
+      h3("This will change the scatterplot on the main panel"),
+      h3("To change the histogram, use the slider option"),
+      h3("This will choose the binwidth and histogram will change based on this"),
       plotOutput("scatter"),
       plotOutput("hist")
     )
