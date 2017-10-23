@@ -1,0 +1,38 @@
+#In this Shiny app, I will use R built in dataset mtcars and demonstrate what the relationship between mpg and
+#weight looks like depending on the cylinder chosen as well as a histogram of mpg allowing user to choose
+# the number of bins
+
+library(shiny)
+library(ggplot2)
+library(datasets)
+
+data("mtcars")
+mtcars <- mtcars
+mtcars$cyl <- paste(mtcars$cyl,"cylinder",sep = " ")
+
+# Define UI for application that shows a line chart
+shinyUI(fluidPage(
+  
+  # Application title
+  titlePanel("Demonstration of Scatterplot and Histogram"),
+  
+  # Sidebar
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("select", label = "Choose a cylinder:",
+                  choices = c("4 cylinder","6 cylinder","8 cylinder")
+      ),
+      sliderInput("bins",
+                   "Binwidth:",
+                   min = 1,
+                   max = 10,
+                   value = 5)
+    ),
+    
+    # Show plots
+    mainPanel(
+      plotOutput("scatter"),
+      plotOutput("hist")
+    )
+  )
+))
